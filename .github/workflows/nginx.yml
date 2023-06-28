@@ -29,7 +29,6 @@ jobs:
       run: |
         docker run -d --name nginx-server -p 80:80 nginx-server
         sleep 5
-        docker ps -a
         docker restart nginx-server
         sleep 5
         docker exec -i nginx-server bash
