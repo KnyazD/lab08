@@ -17,7 +17,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo add-apt-repository "deb [arch=amd64] curl https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
         sudo apt-get update
         sudo apt-get install docker-ce docker-ce-cli containerd.io -y
         
@@ -33,7 +33,7 @@ jobs:
         
     - name: Get starting page
       run: |
-        sudo curl -o index.html 0.0.0.0:8443
+        sudo curl -4 -o index.html 0.0.0.0:8443
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
