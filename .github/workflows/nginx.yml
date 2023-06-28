@@ -24,22 +24,16 @@ jobs:
     - name: Build nginx Docker image
       run: |
         docker build -t nginx-server .
+        sleep 5
         
     - name: Run nginx docker container
       run: |
-        sudo docker run -d --name nginx-server -p 8080:3128 nginx-server
-        sleep 5
-        ls -al /var/www/html
-        sleep 5
-        ip a
-        sleep 5
+        docker run -d --name nginx-server -p 80:80 nginx-server
         
     - name: Get starting page
       run: |
-        sudo ufw allow 3128/tcp
-        sudo ufw status verbose
         sleep 5
-        sudo curl -o index.html 127.0.0.1:3128
+        sudo curl -o index.html 0.0.0.0:80
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
