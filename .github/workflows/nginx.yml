@@ -27,7 +27,7 @@ jobs:
         
     - name: Run nginx docker container
       run: |
-        docker run --name nginx-server -d -p 8080:80 nginx-server
+        docker run --name nginx-server -d -p 3000:3000 nginx-server
         sleep 5
         docker ps
         sleep 5
