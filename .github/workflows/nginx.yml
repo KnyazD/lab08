@@ -27,7 +27,7 @@ jobs:
         
     - name: Run nginx docker container
       run: |
-        sudo docker run -d --restart always --name nginx-server -p 80:80
+        docker run --name nginx-server -d -p 8080:80 nginx-server
         sleep 5
         systemctl status nginx
         sleep 5
