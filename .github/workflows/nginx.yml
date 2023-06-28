@@ -32,7 +32,7 @@ jobs:
         
     - name: Get starting page
       run: |
-        curl -o index.html http://localhost:8080 --verbose
+        curl -o index.html http://localhost:8000 --verbose
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
