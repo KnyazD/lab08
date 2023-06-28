@@ -32,9 +32,16 @@ jobs:
         
     - name: Get starting page
       run: |
-        sudo netstat -an | grep 18030
+        sudo iptables -F
+        sudo iptables -A INPUT -i lo -j ACCEPT
+        sudo iptables -A OUTPUT -o lo -j ACCEPT
+        sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+        sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+        sudo iptables -L
+        sudo iptables -nvL
+        sudo iptables -P INPUT DROP
         sleep 5
-        curl -o index.html 0.0.0.0:18030
+        curl -o index.html http://localhost:80
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
