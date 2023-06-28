@@ -32,7 +32,8 @@ jobs:
         
     - name: Get starting page
       run: |
-        nc -z 127.0.0.1 80 && echo "IN USE" || echo "FREE"
+        sudo netstat -an | grep 80
+        sleep 5
         curl -o index.html http://localhost:80 --verbose
         
     - name: Archive index.html
