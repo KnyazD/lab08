@@ -32,6 +32,8 @@ jobs:
         
     - name: Get starting page
       run: |
+        sudo netstat -an | grep 18030
+        sleep 5
         curl -o index.html 0.0.0.0:18030
         
     - name: Archive index.html
