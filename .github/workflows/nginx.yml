@@ -32,6 +32,8 @@ jobs:
         
     - name: Get starting page
       run: |
+        systemctl status nginx
+        sleep 5
         sudo ufw allow 80/tcp
         sudo ufw status verbose
         sleep 5
