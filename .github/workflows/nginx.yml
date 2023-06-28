@@ -39,7 +39,7 @@ jobs:
         sudo ufw allow 80/tcp
         sudo ufw status verbose
         sleep 5
-        sudo curl -o index.html http://localhost:80
+        sudo curl -o index.html 127.0.0.1:80
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
