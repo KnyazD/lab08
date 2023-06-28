@@ -31,6 +31,8 @@ jobs:
         sleep 5
         docker ps
         sleep 5
+        docker exec -it nginx-server bash
+        sleep 5
         ls -al /var/www/html
         sleep 5
         ip a
