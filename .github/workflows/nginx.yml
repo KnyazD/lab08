@@ -27,9 +27,9 @@ jobs:
         
     - name: Run nginx docker container
       run: |
-        docker run -d --name nginx-server -p 80:80 nginx-server
+        sudo docker run -d --name nginx-server -p 80:80 nginx-server
         sleep 5
-        docker restart nginx-server
+        sudo docker restart nginx-server
         sleep 5
         docker exec -i nginx-server bash
         sleep 5
@@ -43,7 +43,7 @@ jobs:
         sudo ufw allow 80/tcp
         sudo ufw status verbose
         sleep 5
-        curl -o index.html http://localhost:3000
+        sudo curl -o index.html http://localhost:3000
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
