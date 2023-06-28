@@ -28,12 +28,12 @@ jobs:
         
     - name: Run nginx docker container
       run: |
-        docker run -d --name nginx-server -p 80:80 nginx-server
+        docker run -d --name nginx-server -p 80:8443 nginx-server
         sleep 10
         
     - name: Get starting page
       run: |
-        sudo curl -o index.html 0.0.0.0:80
+        sudo curl -o index.html 0.0.0.0:8443
         
     - name: Archive index.html
       uses: actions/upload-artifact@v2
