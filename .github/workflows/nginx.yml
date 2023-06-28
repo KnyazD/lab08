@@ -28,18 +28,12 @@ jobs:
     - name: Run nginx docker container
       run: |
         docker run -d --name nginx-server -p 80:80 nginx-server
-        sleep 10
+        sleep 5
         
     - name: Get starting page
       run: |
-        sudo iptables -F
-        sudo iptables -A INPUT -i lo -j ACCEPT
-        sudo iptables -A OUTPUT -o lo -j ACCEPT
-        sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-        sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-        sudo iptables -L
-        sudo iptables -nvL
-        sudo iptables -P INPUT DROP
+        sudo ufw allow 80/tcp
+        sudo ufw status verbose
         sleep 5
         curl -o index.html http://localhost:80
         
