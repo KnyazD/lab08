@@ -29,10 +29,10 @@ jobs:
     - name: Run nginx docker container
       run: |
         docker run -d --name nginx-server -p 80:80 nginx-server
+        sleep 10
         
     - name: Get starting page
       run: |
-        sleep 5
         sudo curl -o index.html 0.0.0.0:80
         
     - name: Archive index.html
