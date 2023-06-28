@@ -27,7 +27,7 @@ jobs:
         
     - name: Run nginx docker container
       run: |
-        docker run --name nginx-server -d -p 8080:80 nginx-server -v /var/www/html:/usr/share/nginx/html
+        docker run --name nginx-server -d -p 8080:80 nginx-server
         sleep 5
         docker ps
         sleep 5
