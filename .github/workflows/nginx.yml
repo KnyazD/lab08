@@ -1,36 +1,35 @@
-name: Docker Deploy
+name: Deploy Nginx
 
-on: [push]
+on: push
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check Out Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Build Docker Image
+    - name: Build Docker image
       run: docker build -t mynginx .
 
-    - name: Run Docker Container
-      run: docker run -d -p 8080:80 mynginx
+    - name: Start Nginx container
+      run: docker run -d --name mynginx -p 80:80 mynginx
 
-    - name: Wait for Docker Container to Start
+    - name: Wait for Nginx to start
       run: |
-            sleep 5
-            docker ps
-            sleep 5
+        until [[ $(curl -s -o /dev/null -w "%{http_code}" http://localhost) == "200" ]]; do
+          sleep 5
+        done
 
-    - name: Get Index.html Page
-      run: docker cp $(docker ps -q | head -n 1):/usr/share/nginx/html/index.html index.html
+    - name: Get Nginx start page
+      run: curl -o nginx-start-page.html http://localhost
 
-    - name: Archive Index.html
-      run: tar -cf index.tar index.html
+    - name: Create artifact
+      run: tar -czvf nginx-start-page.tar.gz nginx-start-page.html
 
-    - name: Upload Artifact
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: nginx-artifact
-        path: index.tar
+        name: nginx-start-page
+        path: nginx-start-page.tar.gz
