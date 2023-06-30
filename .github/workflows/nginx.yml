@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker Image
-      run: docker build -t mynginx  5
+      run: docker build -t mynginx  
 
     - name: Run Docker Container
       run: docker run -d -p 80:80 mynginx
