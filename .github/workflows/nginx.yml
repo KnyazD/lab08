@@ -21,7 +21,7 @@ jobs:
       run: sleep 5
 
     - name: Get Index.html Page
-      run: docker cp <432bde7e0ecddf6c97ab05a1539a031d1855dad69e17f0f1e558c9ed5d9cbd34>:/usr/share/nginx/html/index.html index.html
+      run: docker cp <mynginx>:/usr/share/nginx/html/index.html index.html
 
     - name: Archive Index.html
       run: tar -cf index.tar index.html
