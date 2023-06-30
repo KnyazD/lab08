@@ -14,7 +14,8 @@ jobs:
     - name: Build Docker Image
       run: |
             docker build -t mynginx .
-            docker start mynginx
+            docker logs mynginx
+            docker port mynginx
 
     - name: Run Docker Container
       run: docker run -d -p 8080:80 mynginx
