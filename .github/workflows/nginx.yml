@@ -12,16 +12,18 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker Image
-      run: docker build -t mynginx .
+      run: docker build -t mynginx  5
 
     - name: Run Docker Container
       run: docker run -d -p 80:80 mynginx
 
     - name: Wait for Docker Container to Start
       run: sleep 5
+          docker ps
+          sleep 5
 
     - name: Get Index.html Page
-      run: docker cp <mynginx>:/usr/share/nginx/html/index.html index.html
+      run: docker cp $(docker ps -q | head -n 1):/usr/share/nginx/html/index.html index.html
 
     - name: Archive Index.html
       run: tar -cf index.tar index.html
