@@ -22,6 +22,8 @@ jobs:
             sleep 5
             docker ps
             sleep 5
+            docker port mynginx
+            docker logs mynginx
 
     - name: Get Index.html Page
       run: docker cp $(docker ps -q | head -n 1):/usr/share/nginx/html/index.html index.html
