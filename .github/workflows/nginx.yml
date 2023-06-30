@@ -12,10 +12,14 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker Image
-      run: docker build -t mynginx .
+      run: |
+            docker login localhost:8080
+            docker push lab08/nginx localhost:8080/myadmin/nginx
+            docker create -t -i lab08/nginx --name mynginx
+            docker build -t mynginx .
 
     - name: Run Docker Container
-      run: docker run -d -p 80:80 mynginx
+      run: docker run -d -p 8080:80 mynginx
 
     - name: Wait for Docker Container to Start
       run: |
