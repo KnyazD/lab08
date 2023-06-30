@@ -18,7 +18,7 @@ jobs:
 
     - name: Wait for Nginx to start
       run: |
-            until nc -z localhost порт; do
+            until nc -z localhost 8080; do
             sleep 2
             done
 
